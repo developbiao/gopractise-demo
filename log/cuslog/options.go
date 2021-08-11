@@ -96,7 +96,7 @@ func initOptions(opts ...Option) (o *options) {
 	}
 
 	if o.output == nil {
-		o.ouput = os.Stderr
+		o.output = os.Stderr
 	}
 
 	if o.formatter == nil {
