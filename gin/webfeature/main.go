@@ -72,7 +72,7 @@ func router() http.Handler {
 	router := gin.Default()
 	productHandler := newProductHandler()
 	// Route group, middleware, authorization
-	v1 := router.Group("/v1")
+	v1 := router.Group("/v1", gin.BasicAuth(gin.Accounts{"gongbiao": "flyme", "guest": "guest"}))
 	{
 		productv1 := v1.Group("/products")
 		{
@@ -92,7 +92,7 @@ func main() {
 	// One process multiple ports
 	insecureServer := &http.Server{
 		Addr:         ":8080",
-		Handler:       router(),
+		Handler:      router(),
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
