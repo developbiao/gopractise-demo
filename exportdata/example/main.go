@@ -6,7 +6,8 @@ import (
 )
 
 func main() {
-	importData()
+	//importData()
+	exportData()
 }
 
 // Export data to excel
