@@ -15,6 +15,7 @@ func main() {
 
 	// send 9 jobs after close
 	for j := 1; j <= 9; j++ {
+		fmt.Println("Push job:", j)
 		jobs <- j
 	}
 	close(jobs)
