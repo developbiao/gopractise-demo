@@ -1,0 +1,17 @@
+package main
+
+import "fmt"
+
+func assert(i interface{}) {
+    v, ok := i.(int)
+    fmt.Println(v, ok)
+}
+
+func main() {
+    var i interface{} = 42
+    assert(i)
+
+    var s interface{} = "Steven Job"
+    assert(s)
+}
+
