@@ -43,5 +43,4 @@ func main() {
 
 	var l LeaveCalculator = e
 	fmt.Println("Leaves left =", l.CalculateLeavesLeft())
-
 }
