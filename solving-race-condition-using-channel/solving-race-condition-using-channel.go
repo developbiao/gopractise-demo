@@ -15,6 +15,8 @@ func increment(ch chan bool, wg *sync.WaitGroup) {
 }
 
 func main() {
+	// buffered channel is used to ensure thant only one
+	// goroutine access the critial section
 	ch := make(chan bool, 1)
 	var wg sync.WaitGroup
 	for i := 0; i < 1000; i++ {
