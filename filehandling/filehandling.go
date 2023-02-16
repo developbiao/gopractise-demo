@@ -1,36 +1,43 @@
 package main
 
 import (
+	"bufio"
 	_ "embed"
 	"flag"
 	"fmt"
+	"io"
+	"log"
 	"os"
 )
-
-//go:embed test.txt
-var contents []byte
 
 func main() {
 	fptr := flag.String("fpath", "test.txt", "file path to read from")
 	flag.Parse()
-	fmt.Println("Value of fpath is", *fptr)
 
-	if info, err := os.Stat(*fptr); err != nil {
-		fmt.Println("File does'not exists")
-		return
-
-	} else {
-		fmt.Println("File information:", info)
-	}
-
-	contents, err := os.ReadFile(*fptr)
+	f, err := os.Open(*fptr)
 	if err != nil {
-		fmt.Println("File reding error", err)
-		return
+		log.Fatal(err)
 	}
-	fmt.Println("Contents of file:", string(contents))
+	defer func() {
+		if err = f.Close(); err != nil {
+			log.Fatal(err)
+		}
+	}()
 
-	fmt.Println("Contents with embed:", string(contents))
+	r := bufio.NewReader(f)
+	b := make([]byte, 3)
+	for {
+		n, err := r.Read(b)
+		if err == io.EOF {
+			fmt.Println("finished reading file")
+			break
+		}
+		if err != nil {
+			fmt.Printf("Error %s reading file", err)
+			break
+		}
+		fmt.Println(string(b[0:n]))
+	}
 
 	fmt.Println("Main func done!")
 }
