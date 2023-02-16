@@ -5,7 +5,6 @@ import (
 	_ "embed"
 	"flag"
 	"fmt"
-	"io"
 	"log"
 	"os"
 )
@@ -24,19 +23,13 @@ func main() {
 		}
 	}()
 
-	r := bufio.NewReader(f)
-	b := make([]byte, 3)
-	for {
-		n, err := r.Read(b)
-		if err == io.EOF {
-			fmt.Println("finished reading file")
-			break
-		}
-		if err != nil {
-			fmt.Printf("Error %s reading file", err)
-			break
-		}
-		fmt.Println(string(b[0:n]))
+	s := bufio.NewScanner(f)
+	for s.Scan() {
+		fmt.Println(s.Text())
+	}
+	err = s.Err()
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	fmt.Println("Main func done!")
