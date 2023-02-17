@@ -28,7 +28,7 @@ func digit(number int) int {
 		sum += digit
 		no /= 10
 	}
-	// simlate the fact taht it takes some time
+	// simlate the fact thant it takes some time
 	time.Sleep(2 * time.Second)
 	return sum
 }
