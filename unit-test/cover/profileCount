@@ -1,0 +1,5 @@
+mode: count
+gopractise-demo/unit-test/cover/coverage.go:8.29,10.27 2 2
+gopractise-demo/unit-test/cover/coverage.go:14.2,15.15 2 2
+gopractise-demo/unit-test/cover/coverage.go:10.27,13.3 2 200
+gopractise-demo/unit-test/cover/coverage.go:18.60,22.2 3 199
